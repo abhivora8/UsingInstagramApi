@@ -10,46 +10,48 @@
 
 @implementation instagramJsonModel
 
--(id)initWithDict:(NSMutableDictionary *)mainDict
+-(instancetype)initWithData:(id)myData
 {
     self = [super init];
     
     if(self) {
-        self.mainData = [mainDict objectForKey:@"data"];
+        if (myData && [myData isKindOfClass:[NSMutableDictionary class]]) {
         
-//        for (NSDictionary *data in self.mainData ){
-        NSMutableDictionary *data = [[NSMutableDictionary alloc]init];
+            NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithDictionary:myData];
             self.objectType = [data objectForKey:@"type"];
-           
+        
             NSMutableDictionary *commentsKey = [data objectForKey:@"comments"];
-            self.numberOfComments = [commentsKey objectForKey:@"count"];
-            
+            self.numberOfComments = [[commentsKey objectForKey:@"count"]integerValue];
+        
             NSMutableDictionary *likesKey = [data objectForKey:@"likes"];
-            self.numberOfLikes = [likesKey objectForKey:@"count"];
-            
+            self.numberOfLikes = [[likesKey objectForKey:@"count"]integerValue];
+        
             NSMutableDictionary *imagesKey = [data objectForKey:@"images"];
             NSMutableDictionary *lowResolutionKey = [imagesKey objectForKey:@"low_resolution"];
             self.lowResolutionImageUrl = [lowResolutionKey objectForKey:@"url"];
             NSMutableDictionary *stdResolutionKey = [imagesKey objectForKey:@"standard_resolution"];
             self.standardResolutionImageUrl = [stdResolutionKey objectForKey:@"url"];
-            
-            NSMutableArray *usersInPhotoKey = [data objectForKey:@"users_in_photo"];
-            for(NSDictionary *usersInPhoto in usersInPhotoKey)
-            {
-                NSMutableDictionary *userKey = [usersInPhoto objectForKey:@"user"];
-                self.userName = [userKey objectForKey:@"username"];
-                self.userProfilePictureUrl = [userKey objectForKey:@"profile_picture"];
-            }
-            
+        
             NSMutableDictionary *captionKey = [data objectForKey:@"caption"];
             NSMutableDictionary *fromKey = [captionKey objectForKey:@"from"];
             self.captionText = [captionKey objectForKey:@"text"];
             self.postingUserName = [fromKey objectForKey:@"username"];
-            
         }
+    }
     return self;
 }
 
+
++(NSMutableArray *)getArrayFromJson:(id)data
+{
+    NSMutableArray *array = [NSMutableArray new];
+    for(NSDictionary *dict in data)
+    {
+        instagramJsonModel *mod = [[instagramJsonModel alloc] initWithData:dict];
+        [array addObject:mod];
+    }
+    return array;
+}
 
 
 @end

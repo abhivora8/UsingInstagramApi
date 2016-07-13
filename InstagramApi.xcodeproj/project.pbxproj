@@ -14,6 +14,8 @@
 		D61C8A321D30DEFD0020ADCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61C8A301D30DEFD0020ADCC /* LaunchScreen.storyboard */; };
 		D61C8A3C1D30E7B50020ADCC /* InstagramDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D61C8A3A1D30E7B50020ADCC /* InstagramDataTableViewController.m */; };
 		D61C8A401D30E7FD0020ADCC /* instagramJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61C8A3F1D30E7FD0020ADCC /* instagramJsonModel.m */; };
+		D62583721D35511500FABEBC /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D62583701D35511500FABEBC /* CustomCell.m */; };
+		D62583731D35511500FABEBC /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D62583711D35511500FABEBC /* CustomCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		D61C8A3A1D30E7B50020ADCC /* InstagramDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramDataTableViewController.m; sourceTree = "<group>"; };
 		D61C8A3E1D30E7FD0020ADCC /* instagramJsonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instagramJsonModel.h; sourceTree = "<group>"; };
 		D61C8A3F1D30E7FD0020ADCC /* instagramJsonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = instagramJsonModel.m; sourceTree = "<group>"; };
+		D625836F1D35511500FABEBC /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		D62583701D35511500FABEBC /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		D62583711D35511500FABEBC /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +73,9 @@
 				D61C8A2B1D30DEFD0020ADCC /* Main.storyboard */,
 				D61C8A391D30E7B50020ADCC /* InstagramDataTableViewController.h */,
 				D61C8A3A1D30E7B50020ADCC /* InstagramDataTableViewController.m */,
+				D625836F1D35511500FABEBC /* CustomCell.h */,
+				D62583701D35511500FABEBC /* CustomCell.m */,
+				D62583711D35511500FABEBC /* CustomCell.xib */,
 				D61C8A2E1D30DEFD0020ADCC /* Assets.xcassets */,
 				D61C8A301D30DEFD0020ADCC /* LaunchScreen.storyboard */,
 				D61C8A331D30DEFD0020ADCC /* Info.plist */,
@@ -143,6 +151,7 @@
 			files = (
 				D61C8A321D30DEFD0020ADCC /* LaunchScreen.storyboard in Resources */,
 				D61C8A2F1D30DEFD0020ADCC /* Assets.xcassets in Resources */,
+				D62583731D35511500FABEBC /* CustomCell.xib in Resources */,
 				D61C8A2D1D30DEFD0020ADCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +167,7 @@
 				D61C8A3C1D30E7B50020ADCC /* InstagramDataTableViewController.m in Sources */,
 				D61C8A271D30DEFD0020ADCC /* AppDelegate.m in Sources */,
 				D61C8A241D30DEFD0020ADCC /* main.m in Sources */,
+				D62583721D35511500FABEBC /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +316,7 @@
 				D61C8A381D30DEFD0020ADCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

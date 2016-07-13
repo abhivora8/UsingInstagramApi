@@ -8,10 +8,12 @@
 
 #import "InstagramDataTableViewController.h"
 #import "instagramJsonModel.h"
+#import "CustomCell.h"
 
 @interface InstagramDataTableViewController ()
 {
-    instagramJsonModel *model;
+    NSMutableArray *instaArray;
+    
 }
 
 @end
@@ -30,20 +32,16 @@
             if (mydata!=nil)
             {
                 id jsonData = [NSJSONSerialization JSONObjectWithData:mydata options:kNilOptions error:&error];
-                model = [[instagramJsonModel alloc] initWithDict:jsonData];     // change jsonData into model type
-                
-//                NSLog(@"Object Type: %@",model.objectType);
-//                NSLog(@"low res. img. url: %@",model.lowResolutionImageUrl);
-//                NSLog(@"User Name: %@",model.userName);
-//                NSLog(@"user pic url: %@",model.userProfilePictureUrl);
-//                NSLog(@"caption text: %@",model.captionText);
-//                NSLog(@"Party who put up the post: %@",model.postingUserName);
-//                NSLog(@"Number of comments: %@",model.numberOfComments);
-//                NSLog(@"Number of likes: %@",model.numberOfLikes);
+                id requiredArray = [jsonData valueForKey:@"data"];
+                instaArray = [instagramJsonModel getArrayFromJson:requiredArray];
+                //NSLog(@"%@",instaArray);
+               
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                 });
             }
+
+            
         }
         @catch (NSException *exception) {
             
@@ -67,16 +65,45 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    if(instaArray.count>0)
+    {
+        return instaArray.count;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell"];
+    
+    if (!cell) {
+        [tableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"myCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"myCell"];
+        
+    }
+    
+    instagramJsonModel *model = [instaArray objectAtIndex:indexPath.row];
+    cell.lowResImageUrlLabel.text = model.lowResolutionImageUrl;
+    cell.stdResImageUrlLabel.text = model.standardResolutionImageUrl;
+    cell.postingUserNameLabel.text = model.postingUserName;
+    cell.typeLabel.text = model.objectType;
+    cell.captionLabel.text = model.captionText;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 287;
 }
 
 
